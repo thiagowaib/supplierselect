@@ -15,7 +15,7 @@ Os fornecedores são avaliados e ranqueados de acordo com uma pontuação final 
 
 ## Regras Definidas no Drools
 
-O Drools é utilizado para definir as regras de avaliação dos fornecedores. Abaixo estão algumas das regras implementadas:
+O Drools é utilizado para definir as regras de avaliação dos fornecedores. Abaixo estão *algumas* das regras implementadas:
 
 - **Regra de Preço Acessível**:
   - Fornecedores com preço abaixo de um limite recebem uma pontuação extra.
