@@ -1,11 +1,10 @@
 package com.example.supplierselect;
 
-rule "Avaliar Fornecedor pelo Preço"
+rule "Avaliar Fornecedor pelo Preco"
 when
     $fornecedor : Fornecedor(preco < 1000)
 then
-    $fornecedor.setPontuacao($fornecedor.getPontuacao() + 1); // Peso 1 para preço
-    System.out.println("Fornecedor com preço adequado.");
+    $fornecedor.setPontuacao($fornecedor.getPontuacao() + 1); // Peso 1 para preco
 end
 
 rule "Avaliar Fornecedor pela Qualidade"
@@ -13,7 +12,6 @@ when
     $fornecedor : Fornecedor(qualidade >= 8)
 then
     $fornecedor.setPontuacao($fornecedor.getPontuacao() + 10); // Peso 4 para qualidade
-    System.out.println("Fornecedor com alta qualidade.");
 end
 
 rule "Avaliar Fornecedor pelo Prazo de Entrega"
@@ -21,15 +19,13 @@ when
     $fornecedor : Fornecedor(prazoEntrega <= 5)
 then
     $fornecedor.setPontuacao($fornecedor.getPontuacao() + 5); // Peso 2 para prazos de entrega
-    System.out.println("Fornecedor com bom histórico de entrega.");
 end
 
-rule "Avaliar Fornecedor pela Reputação"
+rule "Avaliar Fornecedor pela Reputacao"
 when
     $fornecedor : Fornecedor(reputacao >= 4)
 then
-    $fornecedor.setPontuacao($fornecedor.getPontuacao() + 3); // Peso 2 para reputação
-    System.out.println("Fornecedor com boa reputação.");
+    $fornecedor.setPontuacao($fornecedor.getPontuacao() + 3); // Peso 2 para reputacao
 end
 
 rule "Avaliar Fornecedor pela Capacidade de Atendimento"
@@ -37,5 +33,4 @@ when
     $fornecedor : Fornecedor(capacidade >= 500)
 then
     $fornecedor.setPontuacao($fornecedor.getPontuacao() + 7); // Peso 3 para capacidade de atendimento
-    System.out.println("Fornecedor com alta capacidade de atendimento.");
 end

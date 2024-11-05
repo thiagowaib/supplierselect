@@ -1,34 +1,60 @@
 package com.example.supplierselect;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Scanner;
+
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
+import com.example.supplierselect.ui.Header;
+import com.example.supplierselect.ui.ListaDeFornecedores;
+import com.example.supplierselect.ui.Menu;
+
 public class AvaliadorDeFornecedores {
-    public static void main(String[] args) {
+
+    private static final Scanner scanner = new Scanner(System.in);
+    private static ArrayList<Fornecedor> fornecedores = new ArrayList<>();
+
+    private static void carregaInformacoes() {
         KieServices ks = KieServices.Factory.get();
         KieContainer kc = ks.getKieClasspathContainer();
         KieSession kSession = kc.newKieSession("ksession-rules");
 
-        // Criando fornecedores com dados simulados
-        Fornecedor fornecedorA = new Fornecedor("Fornecedor A", 950, 9, 3, 4.5, 600);
-        Fornecedor fornecedorB = new Fornecedor("Fornecedor B", 1200, 8, 6, 3.5, 450);
-        Fornecedor fornecedorC = new Fornecedor("Fornecedor C", 1000, 10, 4, 5.0, 700);
-
-        // Inserindo os fornecedores no motor de regras
-        kSession.insert(fornecedorA);
-        kSession.insert(fornecedorB);
-        kSession.insert(fornecedorC);
-
-        // Executando as regras
+        fornecedores = Fornecedor.carregarFornecedoresCSV(kSession);
+        fornecedores.forEach(kSession::insert);
         kSession.fireAllRules();
-
-        // Fechando sessão
         kSession.dispose();
+    }
 
-        // Exibindo a pontuação final
-        System.out.println(fornecedorA.getNome() + ": " + fornecedorA.getPontuacao());
-        System.out.println(fornecedorB.getNome() + ": " + fornecedorB.getPontuacao());
-        System.out.println(fornecedorC.getNome() + ": " + fornecedorC.getPontuacao());
+    private static void mostraInformacoes() {
+        fornecedores.sort(Comparator.comparing(Fornecedor::getPontuacao).reversed());
+        ListaDeFornecedores.exibir(fornecedores);
+    }
+
+    public static void main(String[] args) {
+        Header.exibir();
+
+
+        // Menu de navegacao no terminal
+        while (true) {
+            Menu.exibir();
+            int escolha = scanner.nextInt();
+
+            switch (escolha) {
+                case 1:
+                    carregaInformacoes();
+                    break;
+                case 2:
+                    mostraInformacoes();
+                    break;
+                case 3:
+                    System.out.println("Saindo...");
+                    return;
+                default:
+                    System.out.println("Opcao inválida, tente novamente.");
+            }
+        }
     }
 }

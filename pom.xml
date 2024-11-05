@@ -32,6 +32,11 @@
         <artifactId>kie-ci</artifactId>
         <version>7.39.0.Final</version>
     </dependency>
+    <dependency>
+        <groupId>com.opencsv</groupId>
+        <artifactId>opencsv</artifactId>
+        <version>5.5.2</version>
+    </dependency>
 </dependencies>
 
     <build>

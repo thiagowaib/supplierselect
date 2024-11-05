@@ -1,2 +1,5 @@
-com\example\supplierselect\AvaliadorDeFornecedores.class
+com\example\supplierselect\ui\Header.class
 com\example\supplierselect\Fornecedor.class
+com\example\supplierselect\AvaliadorDeFornecedores.class
+com\example\supplierselect\ui\ListaDeFornecedores.class
+com\example\supplierselect\ui\Menu.class
